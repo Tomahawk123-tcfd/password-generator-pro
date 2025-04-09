@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Generador de Contraseñas Pro | Tomás Calero</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Open+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>🔐 Generador de Contraseñas Pro</h1>
+      <p class="subtitle">Seguridad elegante, personalizada y eficaz</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="intro">
+      <h2>¿Por qué usar esta herramienta?</h2>
+      <p>
+        En un mundo donde los ciberataques son cada vez más comunes, proteger tus cuentas con contraseñas seguras es esencial. Esta aplicación te permite generar contraseñas que combinan estilo, seguridad y personalización. Ideal para usuarios particulares, empresas o desarrolladores.
+      </p>
+    </section>
+
+    <section class="generador">
+      <h2>Generador de Contraseñas</h2>
+      <input type="text" id="nombre" placeholder="Introduce tu nombre..." />
+      <div class="botones">
+        <button onclick="generarNombre()">🔤 Personalizada</button>
+        <button onclick="generarSegura()">🔐 Aleatoria</button>
+        <button onclick="generarEmoji()">😎 Con emojis</button>
+        <button onclick="generarProfesional()">💼 Profesional</button>
+      </div>
+      <div id="resultado" class="resultado"></div>
+      <button id="copiarBtn" onclick="copiar()">📋 Copiar contraseña</button>
+    </section>
+
+    <section class="info-extra">
+      <h2>Características</h2>
+      <ul>
+        <li>✅ Crea contraseñas únicas y seguras</li>
+        <li>✅ Diseño moderno y adaptable</li>
+        <li>✅ Funciona desde cualquier dispositivo</li>
+        <li>✅ Código limpio y personalizable</li>
+      </ul>
+    </section>
+
+    <section class="contacto">
+      <h2>¿Quieres tu propia versión?</h2>
+      <p>
+        Ofrezco versiones personalizadas para empresas, blogs y aplicaciones. Con tu logo, colores y funciones exclusivas.
+      </p>
+      <a href="https://fiverr.com" target="_blank" class="btn-cta">Comprar versión personalizada</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>Creado por Tomás Calero · Seguridad con estilo · 2025</p>
+  </footer>
+
+  <script>
+    function mostrarContraseña(texto) {
+      const resultado = document.getElementById("resultado");
+      const btnCopiar = document.getElementById("copiarBtn");
+      resultado.innerText = texto;
+      btnCopiar.style.display = "inline-block";
+    }
+
+    function copiar() {
+      const texto = document.getElementById("resultado").innerText;
+      navigator.clipboard.writeText(texto);
+      alert("¡Contraseña copiada!");
+    }
+
+    function generarNombre() {
+      const nombre = document.getElementById("nombre").value.trim();
+      if (!nombre) return mostrarContraseña("Escribe tu nombre primero ☝️");
+      const palabras = ["London", "Bridge", "Crown", "Tea", "Fog", "Knight"];
+      const simbolos = ["!", "@", "#", "$", "%"];
+      const num = Math.floor(Math.random() * 90 + 10);
+      const palabra = palabras[Math.floor(Math.random() * palabras.length)];
+      const simbolo = simbolos[Math.floor(Math.random() * simbolos.length)];
+      mostrarContraseña(`${nombre}${palabra}${num}${simbolo}`);
+    }
+
+    function generarSegura() {
+      const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_=+";
+      let pass = "";
+      for (let i = 0; i < 14; i++) {
+        pass += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      mostrarContraseña(pass);
+    }
+
+    function generarEmoji() {
+      const emojis = ["😎", "🚀", "💻", "🔐", "🧠", "🔥"];
+      const base = "Pass" + Math.floor(Math.random() * 100);
+      const e1 = emojis[Math.floor(Math.random() * emojis.length)];
+      const e2 = emojis[Math.floor(Math.random() * emojis.length)];
+      mostrarContraseña(`${base}${e1}${e2}`);
+    }
+
+    function generarProfesional() {
+      const prefix = ["Corp", "Sys", "Net", "Secure", "Logic"];
+      const suffix = ["2025", "X", "HQ", "One", "Alpha"];
+      const symbol = ["#", "@", "$", "%"];
+      const pw = prefix[Math.floor(Math.random() * prefix.length)] +
+                 suffix[Math.floor(Math.random() * suffix.length)] +
+                 Math.floor(Math.random() * 100) +
+                 symbol[Math.floor(Math.random() * symbol.length)];
+      mostrarContraseña(pw);
+    }
+  </script>
+</body>
+</html>
